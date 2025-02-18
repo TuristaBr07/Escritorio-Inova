@@ -1,0 +1,390 @@
+/* Variáveis Globais */
+:root {
+  --primary-color: #707070;    /* Cinza médio para elementos principais */
+  --secondary-color: #9a9a9a;   /* Cinza claro para elementos secundários */
+  --text-color: #333333;        /* Cinza escuro para textos */
+  --light-color: #ffffff;       /* Branco para fundos e elementos que precisam de destaque */
+  --dark-color: #2c2c2c;        /* Cinza muito escuro para contrastes ou fundos alternativos */
+  --hover-color: #5a5a5a;       /* Tom um pouco mais escuro que o primary para efeitos de hover */
+  --background-light: #f8f9fa;   /* Fundo claro para seções */
+  --background-dark: #2c2c2c;    /* Fundo escuro (quando necessário) */
+  --box-shadow-default: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --font-size-title: 2rem;
+  --font-size-subtitle: 1rem;
+  --transition-duration: 0.3s;
+}
+
+/* Reset CSS */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  color: var(--text-color);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+p {
+  margin-bottom: 10px;
+}
+
+/* Utilitários */
+.bg-light-custom {
+  background-color: var(--background-light);
+}
+
+/* Destaque para seções (usado pelo IntersectionObserver) */
+.highlight {
+  outline: 2px solid var(--primary-color);
+  transition: outline var(--transition-duration) ease;
+}
+
+/* Navbar */
+.navbar-logo {
+  width: 40px;
+  height: auto;
+  border-radius: 50%;
+}
+
+.navbar-text {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--text-color);
+  margin-left: 10px;
+}
+
+/* Hero Section */
+.hero-section {
+  background: url('../img/banner1.webp') no-repeat center center/cover;
+  height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.hero-overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: var(--light-color);
+}
+
+.hero-subtitle {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  color: var(--light-color);
+}
+
+.hero-logo {
+  width: 100px;
+  height: auto;
+  margin-top: 15px;
+}
+
+/* Seções Gerais */
+section {
+  padding: 50px 0;
+}
+
+.section-header {
+  margin-bottom: 30px;
+}
+
+.section-title {
+  font-size: var(--font-size-title);
+  margin-bottom: 15px;
+  color: var(--text-color);
+  position: relative;
+}
+
+.section-title::after {
+  content: "";
+  display: block;
+  width: 50px;
+  height: 4px;
+  background-color: var(--primary-color);
+  margin: 10px auto 0;
+}
+
+.section-subtitle {
+  font-size: var(--font-size-subtitle);
+  color: var(--secondary-color);
+  margin-bottom: 20px;
+}
+
+/* Imagens e Cards */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.rounded.shadow {
+  padding: 20px;
+  margin-bottom: 20px;
+  background-color: var(--light-color);
+  border-radius: 8px;
+  box-shadow: var(--box-shadow-default);
+}
+
+/* Depoimentos */
+#depoimentos .rounded {
+  transition: transform var(--transition-duration) ease, box-shadow var(--transition-duration) ease;
+  will-change: transform;
+}
+
+#depoimentos .rounded:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilos para a seção de clientes */
+.clientes-section {
+  background-color: #ffffff;
+  padding: 50px 0;
+}
+
+.clientes-carousel {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.clientes-track {
+  display: flex;
+  gap: 50px;
+  animation: scroll 20s linear infinite;
+  width: calc(150px * 20); /* Ajusta o tamanho da faixa para rolagem contínua */
+}
+
+.clientes-track img {
+  width: 120px;
+  height: auto;
+  max-height: 80px;
+  object-fit: contain;
+}
+
+@keyframes scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Fotos dos Departamentos */
+.team-photo {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border: 3px solid var(--primary-color);
+  border-radius: 50%;
+  box-shadow: var(--box-shadow-default);
+  margin-bottom: 10px;
+  transition: transform var(--transition-duration) ease, box-shadow var(--transition-duration) ease;
+  will-change: transform;
+}
+
+.team-photo:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Link de Contato */
+.contact-link {
+  display: inline-block;
+  margin-top: 15px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: green;
+  text-decoration: none;
+  transition: color var(--transition-duration) ease, transform var(--transition-duration) ease;
+}
+
+.contact-link i {
+  margin-right: 5px;
+}
+
+.contact-link:hover {
+  color: var(--text-color);
+  transform: translateY(-2px);
+}
+
+/* Contato */
+.contact-info li {
+  font-size: 1rem;
+  margin-bottom: 10px;
+  color: var(--secondary-color);
+}
+
+.contact-info i {
+  margin-right: 10px;
+  color: var(--primary-color);
+}
+
+.contact-form {
+  background-color: var(--light-color);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: var(--box-shadow-default);
+}
+
+.contact-form .form-label {
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+.contact-form .form-control {
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  padding: 10px;
+}
+
+.contact-form .btn {
+  background-color: var(--primary-color);
+  color: var(--light-color);
+  border: none; /* Remove a borda */
+  transition: background-color var(--transition-duration) ease;
+  padding: 10px 20px;
+  font-size: 1rem;
+}
+
+.contact-form .btn:hover {
+  background-color: var(--hover-color);
+}
+
+/* Footer */
+footer {
+  background-color: var(--dark-color);
+  color: var(--light-color);
+  padding: 15px 0;
+}
+
+/* Galeria */
+.gallery-item {
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.gallery-item img {
+  transition: transform var(--transition-duration) ease;
+  will-change: transform;
+}
+
+.gallery-item img:hover {
+  transform: scale(1.05);
+}
+
+.gallery-caption {
+  margin-top: 10px;
+  text-align: center;
+  color: var(--text-color);
+  font-weight: bold;
+}
+
+/* Certificados e Prêmios */
+#certificado img {
+  max-width: 300px;
+  border-radius: 10px;
+  box-shadow: var(--box-shadow-default);
+  transition: transform var(--transition-duration) ease, box-shadow var(--transition-duration) ease;
+  will-change: transform;
+}
+
+#certificado img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+#certificado h4 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--text-color);
+  margin-top: 15px;
+}
+
+/* Carrossel */
+.carousel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel-item img {
+  height: 300px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin: auto;
+  transition: transform var(--transition-duration) ease;
+  will-change: transform;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-inner {
+  text-align: center;
+}
+
+/* Responsividade */
+@media (max-width: 575px) {
+  .hero-title {
+    font-size: 2rem;
+  }
+  .hero-subtitle {
+    font-size: 0.9rem;
+  }
+  .navbar-logo {
+    width: 30px;
+  }
+  #departamentos .col-lg-3 {
+    flex: 0 0 100%;
+    margin-bottom: 20px;
+  }
+  .team-photo {
+    width: 100px;
+    height: 100px;
+  }
+}
+
+@media (max-width: 768px) {
+  .carousel-item img {
+    height: 200px;
+  }
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon {
+    width: 30px;
+    height: 30px;
+  }
+}
