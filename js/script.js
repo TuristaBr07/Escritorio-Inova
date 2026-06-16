@@ -92,3 +92,24 @@ function validateEmail(email) {
   return re.test(email);
 }
 
+// Consentimento de cookies (LGPD)
+function aceitarCookies() {
+  localStorage.setItem('cookie-analytics', 'aceito');
+  const banner = document.getElementById('cookie-banner');
+  if (banner) banner.style.display = 'none';
+  if (typeof carregarGoogleAnalytics === 'function') carregarGoogleAnalytics();
+}
+
+function recusarCookies() {
+  localStorage.setItem('cookie-analytics', 'recusado');
+  const banner = document.getElementById('cookie-banner');
+  if (banner) banner.style.display = 'none';
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  const banner = document.getElementById('cookie-banner');
+  if (banner && localStorage.getItem('cookie-analytics') === null) {
+    banner.style.display = 'flex';
+  }
+});
+
