@@ -1,0 +1,271 @@
+/* Painel Administrativo — Inova Contábil */
+:root {
+  --sidebar-w: 230px;
+  --sidebar-collapsed-w: 58px;
+  --sidebar-bg: #1a2a3a;
+  --sidebar-text: #c8d8e8;
+  --sidebar-active-bg: #1e6091;
+  --topbar-h: 54px;
+  --primary: #1e6091;
+  --primary-dark: #154f78;
+  --transition: 0.25s ease;
+}
+
+*,
+*::before,
+*::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #f4f8fc;
+  color: #333;
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ===== Sidebar ===== */
+.sidebar {
+  width: var(--sidebar-w);
+  background: var(--sidebar-bg);
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: width var(--transition);
+}
+
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 1.1rem 1rem;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.sidebar-logo {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.sidebar-brand span {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.sidebar-menu {
+  list-style: none;
+  padding: 0.5rem 0;
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.sidebar-menu li a {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.62rem 1rem;
+  color: var(--sidebar-text);
+  text-decoration: none;
+  font-size: 0.875rem;
+  white-space: nowrap;
+  transition: background var(--transition), color var(--transition);
+}
+
+.sidebar-menu li a:hover,
+.sidebar-menu li.active a {
+  background: var(--sidebar-active-bg);
+  color: #fff;
+}
+
+.sidebar-menu li a i {
+  width: 18px;
+  text-align: center;
+  flex-shrink: 0;
+  font-size: 0.9rem;
+}
+
+.sidebar-divider {
+  height: 1px;
+  background: rgba(255,255,255,0.08);
+  margin: 0.4rem 0;
+}
+
+/* Collapsed sidebar */
+.sidebar.collapsed {
+  width: var(--sidebar-collapsed-w);
+}
+
+.sidebar.collapsed .sidebar-brand span,
+.sidebar.collapsed .sidebar-menu li a span {
+  display: none;
+}
+
+/* ===== Main Content ===== */
+.main-content {
+  margin-left: var(--sidebar-w);
+  flex: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  transition: margin-left var(--transition);
+}
+
+.main-content.expanded {
+  margin-left: var(--sidebar-collapsed-w);
+}
+
+/* ===== Topbar ===== */
+.topbar {
+  height: var(--topbar-h);
+  background: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,.06);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.25rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.topbar-user {
+  display: flex;
+  align-items: center;
+  font-size: 0.875rem;
+  color: #555;
+}
+
+/* ===== Page Content ===== */
+.page-content {
+  padding: 1.5rem;
+  flex: 1;
+}
+
+.page-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #1a2a3a;
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* ===== Metric Cards ===== */
+.metric-card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 1.1rem 1.25rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,.06);
+  border-left: 4px solid var(--primary);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.metric-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0,0,0,.1);
+}
+
+.metric-value {
+  font-size: 1.9rem;
+  font-weight: 700;
+  color: var(--primary);
+  line-height: 1.1;
+}
+
+.metric-label {
+  font-size: 0.8rem;
+  color: #888;
+  margin-top: 0.2rem;
+}
+
+.metric-icon {
+  font-size: 2rem;
+  color: var(--primary);
+  opacity: 0.15;
+}
+
+/* ===== Table Cards ===== */
+.table-card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.06);
+  overflow: hidden;
+}
+
+.table-card-header {
+  padding: 0.9rem 1.1rem;
+  border-bottom: 1px solid #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.table-card-header h5 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #1a2a3a;
+  margin: 0;
+}
+
+.table thead th {
+  background: #f8fafc;
+  border-top: none;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #888;
+  font-weight: 600;
+}
+
+/* ===== Status Badges ===== */
+.badge-regular   { background-color: #198754 !important; }
+.badge-irregular { background-color: #dc3545 !important; }
+.badge-pendente  { background-color: #fd7e14 !important; }
+
+/* ===== CND Result Card ===== */
+.cnd-result {
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin-top: 1rem;
+  border: 2px solid #e0e0e0;
+  background: #fff;
+}
+
+.cnd-result.regular   { border-color: #198754; background: #f0fff4; }
+.cnd-result.irregular { border-color: #dc3545; background: #fff5f5; }
+
+.cnd-result .cnd-status-icon { font-size: 2.5rem; }
+.cnd-result .cnd-status-text { font-size: 1.25rem; font-weight: 700; }
+.cnd-result .cnd-detail      { font-size: 0.875rem; color: #555; }
+
+/* ===== Spinner ===== */
+#cnd-spinner { display: none; }
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .sidebar {
+    width: var(--sidebar-collapsed-w);
+  }
+  .sidebar .sidebar-brand span,
+  .sidebar .sidebar-menu li a span {
+    display: none;
+  }
+  .main-content {
+    margin-left: var(--sidebar-collapsed-w);
+  }
+  .page-content { padding: 1rem; }
+  .topbar { padding: 0 1rem; }
+}

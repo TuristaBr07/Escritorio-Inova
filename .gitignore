@@ -1,0 +1,10 @@
+# Banco de dados SQLite
+data/*.db
+data/*.db-wal
+data/*.db-shm
+
+# Logs LGPD (dados pessoais — não versionar)
+logs/*.json
+
+# Ambiente
+.env
